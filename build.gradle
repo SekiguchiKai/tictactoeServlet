@@ -1,0 +1,94 @@
+buildscript {
+    ext { 
+        // Gradle App Engine plugin version
+        gaePlunginVersion = '1.9.19' 
+    }
+    repositories { jcenter() }
+    dependencies {
+        classpath "com.google.appengine:gradle-appengine-plugin:${ gaePlunginVersion }"
+    }
+}
+
+// プラグイン
+apply plugin: 'war'
+apply plugin: 'appengine'  // Gradle App Engine plugin
+
+
+// プロジェクト設定
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+//group = 'com.hoge.aaa'
+//version = '1.0'
+
+// GAE プラグイン設定
+ext {
+    // Google App Engine SDK Version
+    sdkVersion = '1.9.19'  // = gaePlunginVersion
+}
+appengine { 
+    downloadSdk = true
+    appcfg {
+        // oauth2 = true  // OAuth2 で認証する
+    }
+}
+
+
+// 依存管理
+repositories { jcenter() }
+dependencies {
+    compile     'org.slf4j:slf4j-api:1.7.7'
+    testCompile 'junit:junit:4.11'
+
+    providedCompile 'javax.servlet:servlet-api:2.5'
+
+    // Google App Engine SDK for Java
+    // appengine.downloadSdk = true のときに、必要
+    appengineSdk "com.google.appengine:appengine-java-sdk:${ sdkVersion }"
+
+    //  Google App Engine API
+    compile      "com.google.appengine:appengine-api-1.0-sdk:${ sdkVersion }"
+    compile      "com.google.appengine:appengine-api-labs:${ sdkVersion }"
+    testCompile  "com.google.appengine:appengine-api-stubs:${ sdkVersion }"
+    testCompile  "com.google.appengine:appengine-testing:${ sdkVersion }"
+
+    // Memcache サポート
+    compile      'net.sf.jsr107cache:jsr107cache:1.1'
+    compile      "com.google.appengine:appengine-jsr107cache:${ sdkVersion }"
+
+}
+
+/*　JPA/JDO を使う場合はこのコメントを外す
+// Persistence サポート
+appengine {
+    enhancer {
+        version     = 'v2'       // DataNucleusのバージョン
+        api         = 'jpa'      // Persistence API 'jpa', 'jdo'
+        enhanceOnBuild = true    // build 時にエンハンス処理を行う
+    }
+}
+dependencies {
+    compile 'org.ow2.asm:asm:4.0'
+    compile 'org.datanucleus:datanucleus-api-jpa:3.1.3'
+    compile 'org.datanucleus:datanucleus-api-jdo:3.1.3'
+    compile 'com.google.appengine.orm:datanucleus-appengine:2.1.2'
+    compile 'org.datanucleus:datanucleus-core:3.1.3'
+    compile 'org.apache.geronimo.specs:geronimo-jpa_2.0_spec:1.0'
+    compile 'javax.jdo:jdo-api:3.0.1'
+    compile 'javax.transaction:jta:1.1'
+}
+*/
+
+/* Google Cloud Endpoints を使う場合はこのコメントを外す
+// Endpoints サポート
+{    
+    endpoints {
+        getDiscoveryDocsOnBuild = true
+        getClientLibsOnBuild    = true
+    }
+}
+dependencies {
+    "compile com.google.appengine:appengine-endpoints:${ sdkVersion }"
+    "compile com.google.appengine:appengine-endpoints-deps:${ sdkVersion }"
+}
+*/
