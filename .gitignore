@@ -12,3 +12,7 @@
 
 # Mac
 .DS_Store
+
+# gradle
+.gradle/3.1/taskArtifacts
+settings.gradle
