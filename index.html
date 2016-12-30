@@ -4,22 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <title>TicTacToe(三目並べ)</title>
-</head>
+    <link rel="stylesheet" type="text/css" href="index.css" </head>
 
-<body>
-    <h1>TicTacToe(三目並べ)アプリです</h1>
-    <p>本アプリは、JavaのサーブレットとGAEの勉強のために作成されたものです。</p>
+    <body>
+        <h1>TicTacToe(三目並べ)アプリです</h1>
+        <p>本アプリは、JavaのサーブレットとGAEの勉強のために作成されたものです。</p>
 
-    <h2>ルール</h2>
-    <h3>勝敗の決定</h3>
-    <ol>
-        <li>縦・横・斜めのいずれかを自分の打ち手で揃えれたプレーヤーが勝利ということになります</li>
-        <li>9マス全てが埋まり、勝敗がついていない場合、引き分けということになります</li>
-    </ol>
+        <h2>ルール</h2>
+        <ol>
+            <li>あなたとAIが交互に自身の打ち手をボード上の各マスに一手ずつ打っていきます</li>
+            <li>縦・横・斜めのいずれかを自分の打ち手で揃えれたプレーヤーが勝利ということになります</li>
+            <li>9マス全てが埋まり、勝敗がついていない場合、引き分けということになります</li>
+        </ol>
 
-    <ol>
-        <li></li>
-    </ol>
-</body>
+
+        <div>
+            <table width="700" height="700">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+    </body>
 
 </html>
